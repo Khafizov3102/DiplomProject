@@ -58,7 +58,7 @@ final class CatalogTableViewCell: UITableViewCell {
         productImageView.image = UIImage(named: ImageView)
         productNameLabel.text = productName
         productDiscriptionLabel.text = productDiscription
-        productPriceLabel.text = String(productPrice)
+        productPriceLabel.text = "\(productPrice)₽"
     }
 }
 

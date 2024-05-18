@@ -11,24 +11,18 @@ class PositionTableViewCell: UITableViewCell {
     
     static let reuseId = "PositionCollectionViewCell"
     
-    private var nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
-        label.textAlignment = .left
-        return label
-    }()
-    private var countLabel = UILabel(text: "")
-    private var sizeLabel = UILabel(text: "")
-    private var costLabel = UILabel(text: "")
+    private var nameLabel = UILabel(text: "", labelFont: .boldSystemFont(ofSize: 15), textAlignment: .center)
+    private var countLabel = UILabel(text: "", textAlignment: .center)
+    private var sizeLabel = UILabel(text: "", textAlignment: .center)
+    private var costLabel = UILabel(text: "", textAlignment: .center)
     
     private let stackView = UIStackView()
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubViews()
         setupLayout()
-        nameLabel.font = .boldSystemFont(ofSize: 15)
     }
     
     required init?(coder: NSCoder) {
@@ -81,12 +75,10 @@ extension PositionTableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
-            
+        NSLayoutConstraint.activate([            
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
     }
 }

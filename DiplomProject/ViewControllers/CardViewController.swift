@@ -16,14 +16,13 @@ class CardViewController: UIViewController {
     private let orderButton = UIButton(title: "Заказать", titleColor: .white, backgroundColor: .mainDark())
     private let denyButton = UIButton(title: "Отменить", titleColor: .white, backgroundColor: .mainRed())
     
-    private let nameTitleLabel = UILabel(text: "Название")
-    private let countTitleLabel = UILabel(text: "Кол-во")
-    private let sizeTitleLabel = UILabel(text: "Размер")
-    private let costTitleLabel = UILabel(text: "Цена")
+    private let nameTitleLabel = UILabel(text: "Название", textAlignment: .center)
+    private let countTitleLabel = UILabel(text: "Кол-во", textAlignment: .center)
+    private let sizeTitleLabel = UILabel(text: "Размер", textAlignment: .center)
+    private let costTitleLabel = UILabel(text: "Цена", textAlignment: .center)
     
     private let titleStackView = UIStackView()
     private let buttonsStackView = UIStackView()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,21 +72,25 @@ class CardViewController: UIViewController {
     
     @objc
     private func orderButtonTapped() {
-        var order = Order(userID: AuthService.shared.currentUser?.uid ?? "", date: Date(), status: OrderStatus.new.rawValue)
-        order.positions = positions
-        DataBaseService.shared.createOrder(order: order) { result in
-            switch result {
-            case .success(let order):
-                print(order.cost)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+//        var order = Order(userID: AuthService.shared.currentUser?.uid ?? "", date: Date(), status: OrderStatus.new.rawValue)
+//        order.positions = positions
+//        DataBaseService.shared.createOrder(order: order) { result in
+//            switch result {
+//            case .success(let order):
+//                print(order.cost)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//        
+//        positions = StorageManager.shared.deletePositions()
+//        tableView.reloadData()
+//        
+//        showAlert(title: "Заказ создан", message: "Вы можете посмотреть его статус в своем профиле.")
         
-        positions = StorageManager.shared.deletePositions()
-        tableView.reloadData()
-        
-        showAlert(title: "Заказ создан", message: "Вы можете посмотреть его статус в своем профиле.")
+        let confirmOrderVC = ConfirmOrderViewController()
+        confirmOrderVC.getPositions(positions: positions)
+        present(confirmOrderVC, animated: true)
     }
 }
 
@@ -153,7 +156,7 @@ extension CardViewController {
             
             tableView.topAnchor.constraint(equalTo: titleStackView.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: buttonsStackView.topAnchor)
         ])
     }

@@ -12,6 +12,7 @@ final class CatalogViewController: UIViewController {
     let tableView = UITableView()
     
     var cells: [Product] = Product.fetchData()
+    var favoriteCells: [Product] = Product.fetchData().filter { $0.isRecommend }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,19 +108,32 @@ extension CatalogViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cells.count
+        if section == 0 {
+            return favoriteCells.count
+        } else {
+            return cells.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CatalogTableViewCell.reuseId, for: indexPath) as?
                 CatalogTableViewCell else { return UITableViewCell() }
         
-        cell.configure(
-            ImageView: cells[indexPath.row].imageUrl,
-            productName: cells[indexPath.row].titile,
-            productDiscription: cells[indexPath.row].description,
-            productPrice: cells[indexPath.row].price
-        )
+        if indexPath.section == 0 {
+            cell.configure(
+                ImageView: favoriteCells[indexPath.row].imageUrl,
+                productName: favoriteCells[indexPath.row].titile,
+                productDiscription: favoriteCells[indexPath.row].description,
+                productPrice: favoriteCells[indexPath.row].price
+            )
+        } else {
+            cell.configure(
+                ImageView: cells[indexPath.row].imageUrl,
+                productName: cells[indexPath.row].titile,
+                productDiscription: cells[indexPath.row].description,
+                productPrice: cells[indexPath.row].price
+            )
+        }
         
         return cell
     }

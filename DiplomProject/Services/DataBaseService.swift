@@ -41,7 +41,7 @@ class DataBaseService {
             
             guard let userName = data["name"] as? String else { return }
             guard let id = data["id"] as? String else { return }
-            guard let phone = data["phone"] as? Int else { return }
+            guard let phone = data["phone"] as? String else { return }
             guard let address = data["address"] as? String else { return }
             
             let user = Profile(
@@ -111,7 +111,6 @@ class DataBaseService {
         for position in positions {
             positionRef.document(position.id).setData(position.representation)
         }
-        print(positions)
         completion(.success(positions))
     }
     

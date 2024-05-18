@@ -14,22 +14,16 @@ final class AuthViewController: UIViewController {
     private let passwordLabel = UILabel(text: "Пароль:")
     private let regAccountLabel = UILabel(text: "Еще не зарегистрированны?")
     
-    private let emailTF = AuthTextFieldForm(isActive: true)
-    private let passwordTF = AuthTextFieldForm(isActive: true)
+    private let emailTF = CustomTextFieldForm(keyboardType: .default)
+    private let passwordTF = CustomTextFieldForm(keyboardType: .default, isPassword: true)
     
-    private let emailStackView = UIStackView()
-    private let passwordStackView = UIStackView()
-    private let mainStackView = UIStackView()
+    private var emailStackView = UIStackView()
+    private var passwordStackView = UIStackView()
+    private var mainStackView = UIStackView()
     private let signUpStackView = UIStackView()
     
     private let authButton = UIButton(title: "Войти", titleColor: .white, backgroundColor: .darkGray)
-    private let signUpButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Регистрация", for: .normal)
-        button.setTitleColor(.mainRed(), for: .normal)
-        button.titleLabel?.font = .mainFont20()
-        return button
-    }()
+    private let signUpButton = UIButton(title: "Регистрация", titleColor: .mainRed(), backgroundColor: .white)
     
     private let mainTabBar = MainTabBarController()
     private let registrationVC = RegistrationViewController()
@@ -50,7 +44,7 @@ final class AuthViewController: UIViewController {
         AuthService.shared.isUserLogin { [unowned self] result in
             switch result {
             case .success(_):
-                if AuthService.shared.currentUser?.uid == "1cZxpctq8bXum3IQmZ6eRxQ5Sal2" {
+                if AuthService.shared.currentUser?.uid == "hNFwj4VivJNv9qPCRR1BxdH4Loz1" {
                     let navigationVC = UINavigationController(rootViewController: adminVC)
                     navigationVC.modalPresentationStyle = .fullScreen
                     present(navigationVC, animated: true)
@@ -113,19 +107,11 @@ private extension AuthViewController {
             mainStackView
         ].forEach {
             view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        emailStackView.addArrangedSubview(emailLabel)
-        emailStackView.addArrangedSubview(emailTF)
-        emailStackView.spacing = 0
-        emailStackView.axis = .vertical
-        emailStackView.distribution = .fill
-        
-        passwordStackView.addArrangedSubview(passwordLabel)
-        passwordStackView.addArrangedSubview(passwordTF)
-        passwordStackView.spacing = 0
-        passwordStackView.axis = .vertical
-        passwordStackView.distribution = .fill
+        emailStackView = UIStackView(arrangedSubviews: [emailLabel, emailTF], axis: .vertical, spacing: 0, distribution: .fill)
+        passwordStackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTF], axis: .vertical, spacing: 0, distribution: .fill)
         
         mainStackView.addArrangedSubview(emailStackView)
         mainStackView.addArrangedSubview(passwordStackView)
@@ -145,25 +131,8 @@ private extension AuthViewController {
 // MARK: Layout
 private extension AuthViewController {
     func setupLayout() {
-        [
-            authLabel,
-            authButton,
-            signUpButton,
-            emailLabel,
-            passwordLabel,
-            regAccountLabel,
-            emailTF,
-            passwordTF,
-            emailStackView,
-            passwordStackView,
-            signUpStackView,
-            mainStackView
-        ].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
         NSLayoutConstraint.activate([
-            authLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            authLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
             authLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             mainStackView.topAnchor.constraint(equalTo: authLabel.bottomAnchor, constant: 120),

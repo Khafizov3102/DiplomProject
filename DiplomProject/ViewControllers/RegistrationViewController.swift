@@ -15,9 +15,9 @@ final class RegistrationViewController: UIViewController {
     private let confirmPasswordLabel = UILabel(text: "Повторите пароль:")
     private let authAccountLabel = UILabel(text: "Уже есть аккаунт?")
     
-    private let emailTF = AuthTextFieldForm(isActive: true)
-    private let confirmPasswordTF = AuthTextFieldForm(isActive: true)
-    private let passwordTF = AuthTextFieldForm(isActive: true)
+    private let emailTF = CustomTextFieldForm(keyboardType: .default)
+    private let confirmPasswordTF = CustomTextFieldForm(keyboardType: .default, isPassword: true)
+    private let passwordTF = CustomTextFieldForm(keyboardType: .default, isPassword: true)
     
     private let emailStackView = UIStackView()
     private let passwordStackView = UIStackView()

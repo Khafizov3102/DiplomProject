@@ -9,7 +9,7 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private var profile = Profile(id: "", name: "", phone: 0, address: "")
+    private var profile = Profile(id: "", name: "", phone: "", address: "")
     
     private let logOutButton = UIButton(title: "Выйти", titleColor: .white, backgroundColor: .mainRed())
     private let saveButton = UIButton(title: "Сохранить", titleColor: .white, backgroundColor: .systemGreen)
@@ -20,9 +20,9 @@ final class ProfileViewController: UIViewController {
     private let userAddressLabel = UILabel(text: "Адрес: ")
     private let welcomeLabel = UILabel(text: "")
     
-    private let userNameTF = AuthTextFieldForm(isActive: true)
-    private let userPhoneTF = AuthTextFieldForm(isActive: true)
-    private let userAddressTF = AuthTextFieldForm(isActive: true)
+    private let userNameTF = CustomTextFieldForm(keyboardType: .default)
+    private let userPhoneTF = CustomTextFieldForm(keyboardType: .default)
+    private let userAddressTF = CustomTextFieldForm(keyboardType: .default)
 
     private var mainStackView = UIStackView()
     private var LabelsStackView = UIStackView()
@@ -60,7 +60,7 @@ final class ProfileViewController: UIViewController {
     @objc
     private func saveButtonPressed() {
         profile.name = userNameTF.text ?? ""
-        profile.phone = Int(userPhoneTF.text ?? "") ?? 0
+        profile.phone = userPhoneTF.text ?? ""
         profile.address = userAddressTF.text ?? ""
         setProfile()
     }

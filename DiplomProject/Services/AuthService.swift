@@ -25,7 +25,7 @@ class AuthService {
                 let userInfo = Profile(
                     id: result.user.uid,
                     name: "",
-                    phone: 0,
+                    phone: "",
                     address: ""
                 )
                 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D14BCCB2BD4785C005B99C6 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14BCCA2BD4785C005B99C6 /* UIStackView + Extension.swift */; };
 		2D1E99DC2B5351CE00752328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D1E99DB2B5351CE00752328 /* GoogleService-Info.plist */; };
 		2D1E99DF2B5356DB00752328 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2D1E99DE2B5356DB00752328 /* FirebaseAuth */; };
 		2D1E99E12B5356DB00752328 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 2D1E99E02B5356DB00752328 /* FirebaseAuthCombine-Community */; };
@@ -44,7 +45,7 @@
 		2D39BE3E2B51F54400A6F692 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BE3D2B51F54400A6F692 /* AuthViewController.swift */; };
 		2D39BE432B51F54500A6F692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D39BE422B51F54500A6F692 /* Assets.xcassets */; };
 		2D39BE462B51F54500A6F692 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D39BE442B51F54500A6F692 /* LaunchScreen.storyboard */; };
-		2D39BE532B5205A600A6F692 /* AuthTextFieldForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BE522B5205A600A6F692 /* AuthTextFieldForm.swift */; };
+		2D39BE532B5205A600A6F692 /* CustomTextFieldForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BE522B5205A600A6F692 /* CustomTextFieldForm.swift */; };
 		2D39BE552B520AB000A6F692 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BE542B520AB000A6F692 /* UIFont + Extension.swift */; };
 		2D39BE592B520E0F00A6F692 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BE582B520E0F00A6F692 /* UILabel + Extension.swift */; };
 		2D39BE5B2B52149700A6F692 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BE5A2B52149700A6F692 /* UIColor + Extension.swift */; };
@@ -55,6 +56,9 @@
 		2D93110E2B8433280018D48F /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D93110D2B8433280018D48F /* AdminViewController.swift */; };
 		2DA647C02B5EC2180078069A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA647BF2B5EC2180078069A /* MainTabBarController.swift */; };
 		2DCECBF62B741A75008FB055 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCECBF52B741A75008FB055 /* Position.swift */; };
+		2DD3D33A2BD3191300186F72 /* OrderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD3D3392BD3191300186F72 /* OrderStatus.swift */; };
+		2DD3D33D2BD420A100186F72 /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD3D33C2BD420A100186F72 /* ConfirmOrderViewController.swift */; };
+		2DD3D33F2BD4356C00186F72 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD3D33E2BD4356C00186F72 /* PaymentMethod.swift */; };
 		2DE570602B68618C00C8A60D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5705F2B68618C00C8A60D /* Product.swift */; };
 		2DF471692B5DF96F00688D29 /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF471682B5DF96F00688D29 /* OpenSans.ttf */; };
 		2DF4716C2B5E105F00688D29 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF4716B2B5E105F00688D29 /* Profile.swift */; };
@@ -62,6 +66,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D14BCCA2BD4785C005B99C6 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		2D1E99DB2B5351CE00752328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D1E9A082B535AD100752328 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2D29ECE22B88E87000B9F218 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +85,7 @@
 		2D39BE422B51F54500A6F692 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D39BE452B51F54500A6F692 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D39BE472B51F54500A6F692 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D39BE522B5205A600A6F692 /* AuthTextFieldForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextFieldForm.swift; sourceTree = "<group>"; };
+		2D39BE522B5205A600A6F692 /* CustomTextFieldForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldForm.swift; sourceTree = "<group>"; };
 		2D39BE542B520AB000A6F692 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		2D39BE582B520E0F00A6F692 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		2D39BE5A2B52149700A6F692 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
@@ -91,6 +96,9 @@
 		2D93110D2B8433280018D48F /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		2DA647BF2B5EC2180078069A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2DCECBF52B741A75008FB055 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		2DD3D3392BD3191300186F72 /* OrderStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatus.swift; sourceTree = "<group>"; };
+		2DD3D33C2BD420A100186F72 /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
+		2DD3D33E2BD4356C00186F72 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		2DE5705F2B68618C00C8A60D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		2DF471682B5DF96F00688D29 /* OpenSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSans.ttf; sourceTree = "<group>"; };
 		2DF4716B2B5E105F00688D29 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -181,8 +189,8 @@
 				2D3584102B6C372B00502D92 /* CatalogViewController.swift */,
 				2D3584142B70C2E100502D92 /* CardViewController.swift */,
 				2D34D2812B829CCF00A57046 /* OrdersViewController.swift */,
-				2D93110D2B8433280018D48F /* AdminViewController.swift */,
-				2D29ECE22B88E87000B9F218 /* OrderInfoViewController.swift */,
+				2DD3D33C2BD420A100186F72 /* ConfirmOrderViewController.swift */,
+				2DD3D33B2BD319ED00186F72 /* AdminController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -218,13 +226,23 @@
 		2D39BE512B52057E00A6F692 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				2D39BE522B5205A600A6F692 /* AuthTextFieldForm.swift */,
+				2D39BE522B5205A600A6F692 /* CustomTextFieldForm.swift */,
 				2D39BE582B520E0F00A6F692 /* UILabel + Extension.swift */,
 				2D39BE5A2B52149700A6F692 /* UIColor + Extension.swift */,
 				2D39BE542B520AB000A6F692 /* UIFont + Extension.swift */,
 				2D39BE5C2B52238800A6F692 /* UIButton + Extension.swift */,
+				2D14BCCA2BD4785C005B99C6 /* UIStackView + Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		2DD3D33B2BD319ED00186F72 /* AdminController */ = {
+			isa = PBXGroup;
+			children = (
+				2D93110D2B8433280018D48F /* AdminViewController.swift */,
+				2D29ECE22B88E87000B9F218 /* OrderInfoViewController.swift */,
+			);
+			path = AdminController;
 			sourceTree = "<group>";
 		};
 		2DE570652B68647D00C8A60D /* Views */ = {
@@ -252,6 +270,8 @@
 				2DE5705F2B68618C00C8A60D /* Product.swift */,
 				2DCECBF52B741A75008FB055 /* Position.swift */,
 				2D7A74522B81824600F25E7F /* Order.swift */,
+				2DD3D3392BD3191300186F72 /* OrderStatus.swift */,
+				2DD3D33E2BD4356C00186F72 /* PaymentMethod.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -363,10 +383,14 @@
 				2D3584112B6C372B00502D92 /* CatalogViewController.swift in Sources */,
 				2DF4716C2B5E105F00688D29 /* Profile.swift in Sources */,
 				2D35840F2B6C33F800502D92 /* CatalogTableViewCell.swift in Sources */,
+				2DD3D33F2BD4356C00186F72 /* PaymentMethod.swift in Sources */,
 				2D93110E2B8433280018D48F /* AdminViewController.swift in Sources */,
 				2D30432E2B5C8D2F008F5DA3 /* RegistrationViewController.swift in Sources */,
 				2DF4716E2B5E10E400688D29 /* DataBaseService.swift in Sources */,
+				2DD3D33D2BD420A100186F72 /* ConfirmOrderViewController.swift in Sources */,
+				2DD3D33A2BD3191300186F72 /* OrderStatus.swift in Sources */,
 				2DCECBF62B741A75008FB055 /* Position.swift in Sources */,
+				2D14BCCB2BD4785C005B99C6 /* UIStackView + Extension.swift in Sources */,
 				2D39BE592B520E0F00A6F692 /* UILabel + Extension.swift in Sources */,
 				2D3043302B5C94E8008F5DA3 /* ProfileViewController.swift in Sources */,
 				2D4F718F2B757DA700312034 /* PositionTableViewCell.swift in Sources */,
@@ -379,7 +403,7 @@
 				2D34D2822B829CCF00A57046 /* OrdersViewController.swift in Sources */,
 				2D35840D2B69BA1100502D92 /* ProductViewController.swift in Sources */,
 				2D7A74532B81824600F25E7F /* Order.swift in Sources */,
-				2D39BE532B5205A600A6F692 /* AuthTextFieldForm.swift in Sources */,
+				2D39BE532B5205A600A6F692 /* CustomTextFieldForm.swift in Sources */,
 				2D4E3C0A2B76CF47008EAF14 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -507,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

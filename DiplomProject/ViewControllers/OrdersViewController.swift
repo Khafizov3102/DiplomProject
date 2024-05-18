@@ -49,6 +49,7 @@ final class OrdersViewController: UIViewController {
             switch result {
             case .success(let positions):
                 self.orders[orderIndex].positions = positions
+                self.ordersTableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -58,7 +59,6 @@ final class OrdersViewController: UIViewController {
     @objc
     private func reloadButtonPressed() {
         ordersTableView.reloadData()
-        print(orders)
     }
 }
 
@@ -77,9 +77,9 @@ private extension OrdersViewController {
     
     func setupNavigationBar() {
         navigationController?.title = "Список заказоа"
-//        navigationController?.navigationBar.barTintColor = .black
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isTranslucent = false
     }
 }
 
@@ -121,32 +121,36 @@ extension OrdersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        orders[section].positions.count
+        orders[section].positions.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = ordersTableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseId, for: indexPath) as? OrderTableViewCell else { return UITableViewCell() }
-        cell.configure(
-            name: orders[indexPath.section].positions[indexPath.row].product.titile,
-            count: orders[indexPath.section].positions[indexPath.row].count,
-            size: orders[indexPath.section].positions[indexPath.row].size,
-            cost: orders[indexPath.section].positions[indexPath.row].cost
-        )
+        if indexPath.row < orders[indexPath.section].positions.count {
+            cell.configure(
+                name: orders[indexPath.section].positions[indexPath.row].product.titile,
+                count: String(orders[indexPath.section].positions[indexPath.row].count),
+                size: orders[indexPath.section].positions[indexPath.row].size,
+                cost: orders[indexPath.section].positions[indexPath.row].cost
+            )
+        } else {
+            cell.configure(name: "Итог:", count: "", size: "", cost: orders[indexPath.section].cost)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "Статус: \(orders[section].status)"
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
         let dateString = dateFormatter.string(from: orders[section].date)
 
         return "Заказ от: \(dateString)"
-    }
-    
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        "Итог: \(orders[section].cost)"
     }
 }
 

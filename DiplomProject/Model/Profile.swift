@@ -10,7 +10,7 @@ import Foundation
 struct Profile: Identifiable {
     var id: String
     var name: String
-    var phone: Int
+    var phone: String
     var address: String
     
     var representation: [String: Any] {

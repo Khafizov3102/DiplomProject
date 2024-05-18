@@ -9,7 +9,7 @@ import UIKit
 
 final class ProductViewController: UIViewController {
     
-    private var product = Product(id: "", titile: "", imageUrl: "", price: 0, description: "")
+    private var product = Product(id: "", titile: "", imageUrl: "", price: 0, description: "", isRecommend: false)
     
     let cardsVC = CardViewController()
     
@@ -48,7 +48,7 @@ final class ProductViewController: UIViewController {
     
     private let sizeSegmentedControll: UISegmentedControl = {
         let segmentedControll = UISegmentedControl(items: ["Маленькая", "Средняя", "Большая"])
-        segmentedControll.selectedSegmentIndex = 0
+        segmentedControll.selectedSegmentIndex = -1
         return segmentedControll
     }()
     
@@ -91,9 +91,9 @@ final class ProductViewController: UIViewController {
     private func updatePrice() {
         switch sizeSegmentedControll.selectedSegmentIndex {
         case 1:
-            productPriceLabel.text = "\(Double(product.price) * 1.15 * stepper.value)₽"
+            productPriceLabel.text = "\(round(Double(product.price) * 1.15) * stepper.value)₽"
         case 2:
-            productPriceLabel.text = "\(Double(product.price) * 1.3 * stepper.value)₽"
+            productPriceLabel.text = "\(round(Double(product.price) * 1.3) * stepper.value)₽"
         default:
             productPriceLabel.text = "\(Double(product.price) * stepper.value)₽"
         }

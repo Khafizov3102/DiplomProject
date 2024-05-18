@@ -23,6 +23,10 @@ final class AdminViewController: UIViewController {
         setupView()
         addSubViews()
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getOrders()
     }
     
@@ -47,6 +51,7 @@ final class AdminViewController: UIViewController {
             switch result {
             case .success(let positions):
                 self.orders[orderIndex].positions = positions
+                self.ordersTableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -55,7 +60,7 @@ final class AdminViewController: UIViewController {
     
     @objc
     private func reloadButtonPressed() {
-        ordersTableView.reloadData()
+        getOrders()
     }
     
     @objc
@@ -126,7 +131,7 @@ extension AdminViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ordersTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Итог: \(orders[indexPath.section].cost)"
+        cell.textLabel?.text = "Статус: \(orders[indexPath.section].status)"
         
         return cell
     }

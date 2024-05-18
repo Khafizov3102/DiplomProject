@@ -11,15 +11,10 @@ class OrderTableViewCell: UITableViewCell {
     
     static let reuseId = "OrderCollectionViewCell"
     
-    private var nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
-        label.textAlignment = .left
-        return label
-    }()
-    private var countLabel = UILabel(text: "")
-    private var sizeLabel = UILabel(text: "")
-    private var costLabel = UILabel(text: "")
+    private var nameLabel = UILabel(text: "", labelFont: .boldSystemFont(ofSize: 20), textAlignment: .center)
+    private var countLabel = UILabel(text: "", textAlignment: .center)
+    private var sizeLabel = UILabel(text: "", textAlignment: .center)
+    private var costLabel = UILabel(text: "", textAlignment: .center)
     
     private let stackView = UIStackView()
     
@@ -40,9 +35,13 @@ class OrderTableViewCell: UITableViewCell {
 
     }
 
-    func configure(name: String, count: Int, size: String, cost: Int) {
+    func configure(name: String, count: String, size: String, cost: Int) {
         nameLabel.text = name
-        countLabel.text = "\(count) шт."
+        if count != "" {
+            countLabel.text = "\(count) шт."
+        } else {
+            countLabel.text = ""
+        }
         sizeLabel.text = size
         costLabel.text = String(cost)
     }
@@ -82,11 +81,9 @@ extension OrderTableViewCell {
         }
         
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 16),
-            
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
 }
