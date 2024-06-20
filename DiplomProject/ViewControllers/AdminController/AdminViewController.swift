@@ -10,6 +10,12 @@ import UIKit
 final class AdminViewController: UIViewController {
     
     private var orders = [Order]()
+    private var newOrders = [Order]()
+    private var cookingOrders = [Order]()
+    private var deliveryOrders = [Order]()
+    private var completedOrders = [Order]()
+    private var cancelledOrders = [Order]()
+    
     private var positions = [Position]()
     
     private let ordersTableView = UITableView()
@@ -31,15 +37,15 @@ final class AdminViewController: UIViewController {
     }
     
     private func getOrders() {
-        DataBaseService.shared.getOrders(userID: nil) { result in
+        DataBaseService.shared.getOrders(userID: nil) { [weak self] result in
             switch result {
             case .success(let orders):
-                self.orders = orders
+                self?.orders = orders
                 
                 for orderIndex in 0..<orders.count {
-                    self.getPositions(orderID: orders[orderIndex].id, orderIndex: orderIndex)
+                    self?.getPositions(orderID: orders[orderIndex].id, orderIndex: orderIndex)
                 }
-                
+                self?.filterOrders()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -47,15 +53,40 @@ final class AdminViewController: UIViewController {
     }
     
     private func getPositions(orderID: String, orderIndex: Int) {
-        DataBaseService.shared.getPositions(orderID: orderID) { result in
+        DataBaseService.shared.getPositions(orderID: orderID) { [weak self] result in
             switch result {
             case .success(let positions):
-                self.orders[orderIndex].positions = positions
-                self.ordersTableView.reloadData()
+                self?.orders[orderIndex].positions = positions
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func filterOrders() {
+        newOrders = []
+        cookingOrders = []
+        deliveryOrders = []
+        completedOrders = []
+        cancelledOrders = []
+        
+        for order in orders {
+            switch order.status {
+            case "Новый":
+                newOrders.append(order)
+            case "Готовится":
+                cookingOrders.append(order)
+            case "Доставляется":
+                deliveryOrders.append(order)
+            case "Выполнен":
+                completedOrders.append(order)
+            case "Отменен":
+                cancelledOrders.append(order)
+            default:
+                break
+            }
+        }
+        ordersTableView.reloadData()
     }
     
     @objc
@@ -122,32 +153,86 @@ private extension AdminViewController {
 //MARK: Table View DataSource
 extension AdminViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        orders.count
+        5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        switch section {
+        case 0:
+            return newOrders.count
+        case 1:
+            return cookingOrders.count
+        case 2:
+            return deliveryOrders.count
+        case 3:
+            return completedOrders.count
+        case 4:
+            return cancelledOrders.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ordersTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Статус: \(orders[indexPath.section].status)"
         
+        let cell = ordersTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                
+        switch indexPath.section {
+        case 0:
+            cell.textLabel?.text = "Заказ от: \(dateFormatter.string(from: newOrders[indexPath.row].date))"
+        case 1:
+            cell.textLabel?.text = "Заказ от: \(dateFormatter.string(from: cookingOrders[indexPath.row].date))"
+        case 2:
+            cell.textLabel?.text = "Заказ от: \(dateFormatter.string(from: deliveryOrders[indexPath.row].date))"
+        case 3:
+            cell.textLabel?.text = "Заказ от: \(dateFormatter.string(from: completedOrders[indexPath.row].date))"
+        case 4:
+            cell.textLabel?.text = "Заказ от: \(dateFormatter.string(from: cancelledOrders[indexPath.row].date))"
+        default:
+            cell.textLabel?.text = ""
+
+        }
+                
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-        let dateString = dateFormatter.string(from: orders[section].date)
-
-        return "Заказ от: \(dateString)"
+        switch section {
+        case 0:
+            return "Новый"
+        case 1:
+            return "Готовится"
+        case 2:
+            return "Доставляется"
+        case 3:
+            return "Выполнен"
+        case 4:
+            return "Отменен"
+        default:
+            return ""
+        }
     }
     
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        "Итог: \(orders[section].cost)"
-    }
+//    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        switch section {
+//        case 0:
+//            return "Итог: \(newOrders[section].cost)"
+//        case 1:
+//            return "Итог: \(cookingOrders[section].cost)"
+//        case 2:
+//            return "Итог: \(deliveryOrders[section].cost)"
+//        case 3:
+//            return "Итог: \(completedOrders[section].cost)"
+//        case 4:
+//            return "Итог: \(cancelledOrders[section].cost)"
+//        default:
+//            return ""
+//
+//        }
+//    }
 }
 
 //MARK:: Table View Delegate

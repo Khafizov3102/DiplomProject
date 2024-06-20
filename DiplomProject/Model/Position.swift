@@ -46,12 +46,14 @@ struct Position: Codable {
         guard let title = data["title"] as? String else { return nil }
         guard let price = data["price"] as? Int else { return nil }
         guard let size = data["size"] as? String else { return nil }
+//        guard let isRecommend = data["isRecommend"] as? Bool else { return nil }
         let product = Product(
             id: "",
             titile: title,
             imageUrl: "",
             price: price,
-            description: ""
+            description: "", 
+            isRecommend: true
         )
         guard let count = data["count"] as? Int else { return nil }
         
@@ -64,6 +66,6 @@ struct Position: Codable {
 
 enum ProductSize: String, Codable {
     case small = "Маленькая"
-    case medium = "Средvar"
+    case medium = "Средняя"
     case large = "Большая"
 }
